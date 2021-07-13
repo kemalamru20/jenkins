@@ -2,15 +2,15 @@ from jenkins/jenkins:lts-alpine
 USER root
 
 # Pipeline
-RUN /usr/local/bin/install-plugins.sh workflow-aggregator && \
-    /usr/local/bin/install-plugins.sh github && \
-    /usr/local/bin/install-plugins.sh ws-cleanup && \
-    /usr/local/bin/install-plugins.sh greenballs && \
-    /usr/local/bin/install-plugins.sh simple-theme-plugin && \
-    /usr/local/bin/install-plugins.sh kubernetes && \
-    /usr/local/bin/install-plugins.sh docker-workflow && \
-    /usr/local/bin/install-plugins.sh kubernetes-cli && \
-    /usr/local/bin/install-plugins.sh github-branch-source
+RUN jenkins-plugin-cli --plugins workflow-aggregator deployit-plugin && \
+    jenkins-plugin-cli --plugins github deployit-plugin && \
+    jenkins-plugin-cli --plugins ws-cleanup deployit-plugin && \
+    jenkins-plugin-cli --plugins greenballs deployit-plugin && \
+    jenkins-plugin-cli --plugins simple-theme-plugin deployit-plugin && \
+    jenkins-plugin-cli --plugins kubernetes deployit-plugin && \
+    jenkins-plugin-cli --plugins docker-workflow deployit-plugin && \
+    jenkins-plugin-cli --plugins kubernetes-cli deployit-plugin && \
+    jenkins-plugin-cli --plugins github-branch-source deployit-plugin 
 
 # install Maven, Java, Docker, AWS
 RUN apk add --no-cache maven \
